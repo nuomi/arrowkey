@@ -1,0 +1,54 @@
+<html>
+
+<script type="text/javascript">
+
+var col = 4; //number of 'cells' in a row
+var current;
+var next;
+document.onkeydown = check;
+function check(e){
+	if (!e) var e = window.event;
+		(e.keyCode) ? key = e.keyCode : key = e.which;
+	var num = document.getElementById("Table").getElementsByTagName("input").length;
+	try{
+		switch(key){
+			case 37: next = current - 1; break; 		//left
+			case 38: next = current - col; break; 		//up
+			case 39: next = (1*current) + 1; break; 	//right
+			case 40: next = (1*current) + col; break; 	//down
+		}
+		if (key==37|key==38|key==39|key==40){
+			/* Submit etc.*/
+			var code=document.forms['Table'].elements['c' + current].value;
+			if(code!=""){alert(code);}
+			document.forms['Table'].elements['c' + next].focus();
+			current = next;
+		}		
+	}catch(Exception){}
+}
+function setCurrent(element){
+	var string = element.id;
+	current = string.slice(1,string.length);
+}
+
+
+</script>
+
+
+
+<form id="Table" name="Table" onKeyPress="javascript:check">
+	<input id="c1" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c2" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c3" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c4" onClick="setCurrent(this);" type="text" value=""/><br>
+	<input id="c5" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c6" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c7" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c8" onClick="setCurrent(this);" type="text" value=""/><br>
+	<input id="c9" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c10" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c11" onClick="setCurrent(this);" type="text" value=""/>
+	<input id="c12" onClick="setCurrent(this);" type="text" value=""/><br>
+</form>
+
+</html>
